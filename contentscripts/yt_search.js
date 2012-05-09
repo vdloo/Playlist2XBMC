@@ -2,7 +2,7 @@ var linkbar = $(".result-item-main-content");
 var linkcount = $(".result-item-main-content");
 var search_current;
 var youtube_id;
-var object_amount = (linkcount.length );
+var object_amount = (linkcount.length);
 
 //loop for adding the buttons
 for(i=0;i<object_amount;i++){
