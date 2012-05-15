@@ -16,7 +16,6 @@ for(i=0;i<object_amount;i++){
 			if(amprsnd != -1) {
 				youtube_id = youtube_id.substring(0, amprsnd);
 			}
-			console.log(youtube_id);
 			search_current = linkbar[i];
 			search_current.innerHTML += '<ul style="float: right;" class="single-line-lego-list"><li><a id="'+youtube_id+'" class="yt-badge-std playbutton" dir="ltr">play</a></li><li><a class="yt-badge-std plusbutton" id="'+youtube_id+'" dir="ltr">+</a></li></ul>'
 		}
