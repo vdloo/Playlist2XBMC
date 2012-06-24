@@ -16,6 +16,7 @@ function send_plus(video_id){
 
 function send_play(video_id){
 	var getcurrentplaylist = '{"jsonrpc": "2.0", "method": "Playlist.GetItems", "params":{"playlistid":1}, "id": 1}'
+
 	xbmcsend(getcurrentplaylist,function( result ){
 		if(result.result.items){
 			var item_amount = result.result.items.length;
