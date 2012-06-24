@@ -1,23 +1,22 @@
-var linkbar = $(".result-item-main-content");
-var linkcount = $(".result-item-main-content");
+var linkbar = document.getElementById("search-results");
+var linkcount = $(".yt-lockup-thumbnail");
 var search_current;
 var youtube_id;
 var object_amount = (linkcount.length);
 
 //loop for adding the buttons
 for(i=0;i<object_amount;i++){
-	if(linkbar.children("h3")[i]){
-		search_object = linkbar.children("h3")[i].innerHTML;
-		youtube_id= search_object.split('href')[1];
-		youtube_id = youtube_id.split('"')[1];
-		youtube_id = youtube_id.split('v=')[1];
+	if(linkcount.children("a")[i].href){
+		search_object = linkcount.children("a")[i].href;
+		youtube_id = search_object.split('v=')[1];
 		if (youtube_id){
 			var amprsnd = youtube_id.indexOf('&');
 			if(amprsnd != -1) {
 				youtube_id = youtube_id.substring(0, amprsnd);
 			}
-			search_current = linkbar[i];
-			search_current.innerHTML += '<ul style="float: right;" class="single-line-lego-list"><li><a id="'+youtube_id+'" class="yt-badge-std playbutton" dir="ltr">play</a></li><li><a class="yt-badge-std plusbutton" id="'+youtube_id+'" dir="ltr">+</a></li></ul>'
+			search_current = linkbar.children[i];
+			console.log(search_current);
+			search_current.innerHTML += '<ul style="float: right; position: relative; top: -20px;" class="single-line-lego-list"><li><a id="'+youtube_id+'" class="yt-badge-std playbutton" dir="ltr">play</a></li><li><a class="yt-badge-std plusbutton" id="'+youtube_id+'" dir="ltr">+</a></li></ul>'
 		}
 	}
 }
