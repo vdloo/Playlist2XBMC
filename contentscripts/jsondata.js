@@ -40,9 +40,18 @@ function send_play(video_id){
 		};
 		var inserttoplaylist = '{"jsonrpc": "2.0", "method": "Playlist.Insert", "params":{"playlistid":1,"position":'+insert_position+',"item":{ "file" : "plugin://plugin.video.youtube/?action=play_video&videoid='+video_id+'"} }, "id": 1}';
 		xbmcsend(inserttoplaylist,function( result ){});
-		var playinserted = '{"jsonrpc": "2.0", "method": "Player.GoTo", "params":{"playerid":1,"position":'+insert_position+'}, "id": 1}';
-		//var playinserted = '{"jsonrpc": "2.0", "method": "Player.Open", "params":{"item":{"playlistid":1, "position" : '+insert_position+'}}, "id": 1}';
-		xbmcsend(playinserted,function( result ){});
+		var getactiveplayers = '{"jsonrpc": "2.0", "method": "Player.GetActivePlayers", "id": 1}';
+		xbmcsend(getactiveplayers,function( result ){
+			//notplaying
+			if (jQuery.isEmptyObject(result.result)){
+				var playinserted = '{"jsonrpc": "2.0", "method": "Player.Open", "params":{"item":{"playlistid":1, "position" : '+insert_position+'}}, "id": 1}';
+			}
+			//playing
+			else {
+				var playinserted = '{"jsonrpc": "2.0", "method": "Player.GoTo", "params":{"playerid":1,"position":'+insert_position+'}, "id": 1}';
+			}
+			xbmcsend(playinserted,function( result ){});
+		});
 	});
 }
 
@@ -53,15 +62,36 @@ function send_clear(){
 	});
 }
 function send_playlist_start(video_id){
-	send_clear();
-	var inserttoplaylist = '{"jsonrpc": "2.0", "method": "Playlist.Insert", "params":{"playlistid":1,"position": 0,"item":{ "file" : "plugin://plugin.video.youtube/?action=play_video&videoid='+video_id+'"} }, "id": 1}';
-	xbmcsend(inserttoplaylist,function( unused_result ){});
+	//var inserttoplaylist = '{"jsonrpc": "2.0", "method": "Playlist.Insert", "params":{"playlistid":1,"position": 0,"item":{ "file" : "plugin://plugin.video.youtube/?action=play_video&videoid='+video_id+'"} }, "id": 1}';
+//	xbmcsend(inserttoplaylist,function( unused_result ){});
 
 //	var startplaylist = '{"jsonrpc": "2.0", "method": "Player.Open", "params":{"item":{"playlistid":1, "position" : 0}}, "id": 1}';
-	var startplaylist = '{"jsonrpc": "2.0", "method": "Player.GoTo", "params":{"playerid":1,"position":0}, "id": 1}';
-	xbmcsend(startplaylist,function( unused_result ){});
+	var getactiveplayers = '{"jsonrpc": "2.0", "method": "Player.GetActivePlayers", "id": 1}';
+	xbmcsend(getactiveplayers,function( result ){
+		//notplaying
+		if (jQuery.isEmptyObject(result.result)){
+			var startplaylist = '{"jsonrpc": "2.0", "method": "Player.Open", "params":{"item":{"playlistid":1, "position" : 0}}, "id": 1}';
+		}
+		//playing
+		else {
+			var startplaylist = '{"jsonrpc": "2.0", "method": "Player.GoTo", "params":{"playerid":1,"position":0}, "id": 1}';
+		}
+		xbmcsend(startplaylist,function( unused_result ){});
+	});
 }
 function send_playlist_plus(video_id){
 	var addtoplaylist = '{"jsonrpc": "2.0", "method": "Playlist.Add", "params":{"playlistid":1,"item":{ "file" : "plugin://plugin.video.youtube/?action=play_video&videoid='+video_id+'"} }, "id": 1}';
         xbmcsend(addtoplaylist,function( unused_result ){});
 }
+
+
+function id_array(video_array){
+	send_clear();
+	var pl_amount = video_array.length;
+
+	for(i=0;i<pl_amount;i++){
+		send_playlist_plus(video_array[i]);
+	}
+	send_playlist_start(video_array[0]);
+}
+

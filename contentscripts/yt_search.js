@@ -40,3 +40,23 @@ for(i=0;i<clickable_amount;i++){
 	})(i);
 }
 
+var playlist_array = new Array();
+for(i=0;i<linkcount.length;i++){
+	if (linkcount.children("a")[i]){
+		var yt_id = linkcount.children("a")[i].href.split('v=')[1];
+		if (yt_id){
+			yt_id = yt_id.split('&')[0];
+			playlist_array.push(yt_id);
+		}
+	}
+}
+var topbar = $('p.num-results')[0];
+topbar.innerHTML += '<div id="queue_all" style="height: 20px; width: 80px; float: right;"><a id="'+youtube_id+'" class="yt-badge-std playbutton" dir="ltr">queue all</a></div>';
+
+
+//queue all button action
+var yt_play = document.getElementById('queue_all');
+yt_play.addEventListener("click", function() {
+	id_array(playlist_array);
+}, false);
+

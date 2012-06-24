@@ -41,11 +41,6 @@ yt_clear.addEventListener("click", function() {
 var yt_playlist = document.getElementById('yt_playlist');
 if (yt_playlist){
 	yt_playlist.addEventListener("click", function() {
-		var pl_amount = playlist_array.length - 1;
-		send_playlist_start(playlist_array[0]);
-		
-		for(i=1;i<pl_amount;i++){
-			send_playlist_plus(playlist_array[i]);
-		}
+		id_array(playlist_array);
 	}, false);
 }
