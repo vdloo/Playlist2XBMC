@@ -40,7 +40,8 @@ function send_play(video_id){
 		};
 		var inserttoplaylist = '{"jsonrpc": "2.0", "method": "Playlist.Insert", "params":{"playlistid":1,"position":'+insert_position+',"item":{ "file" : "plugin://plugin.video.youtube/?action=play_video&videoid='+video_id+'"} }, "id": 1}';
 		xbmcsend(inserttoplaylist,function( result ){});
-		var playinserted = '{"jsonrpc": "2.0", "method": "Player.Open", "params":{"item":{"playlistid":1, "position" : '+insert_position+'}}, "id": 1}';
+		var playinserted = '{"jsonrpc": "2.0", "method": "Player.GoTo", "params":{"playerid":1,"position":'+insert_position+'}, "id": 1}';
+		//var playinserted = '{"jsonrpc": "2.0", "method": "Player.Open", "params":{"item":{"playlistid":1, "position" : '+insert_position+'}}, "id": 1}';
 		xbmcsend(playinserted,function( result ){});
 	});
 }
@@ -56,7 +57,8 @@ function send_playlist_start(video_id){
 	var inserttoplaylist = '{"jsonrpc": "2.0", "method": "Playlist.Insert", "params":{"playlistid":1,"position": 0,"item":{ "file" : "plugin://plugin.video.youtube/?action=play_video&videoid='+video_id+'"} }, "id": 1}';
 	xbmcsend(inserttoplaylist,function( unused_result ){});
 
-	var startplaylist = '{"jsonrpc": "2.0", "method": "Player.Open", "params":{"item":{"playlistid":1, "position" : 0}}, "id": 1}';
+//	var startplaylist = '{"jsonrpc": "2.0", "method": "Player.Open", "params":{"item":{"playlistid":1, "position" : 0}}, "id": 1}';
+	var startplaylist = '{"jsonrpc": "2.0", "method": "Player.GoTo", "params":{"playerid":1,"position":0}, "id": 1}';
 	xbmcsend(startplaylist,function( unused_result ){});
 }
 function send_playlist_plus(video_id){
