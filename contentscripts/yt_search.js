@@ -7,15 +7,17 @@ var object_amount = (linkcount.length);
 //loop for adding the buttons
 for(i=0;i<object_amount;i++){
 	if(linkcount.children("a")[i].href){
-		search_object = linkcount.children("a")[i].href;
+		search_current = linkbar.children[i];
+		search_object = search_current.children[0].children[0].children[0].href;
 		youtube_id = search_object.split('v=')[1];
 		if (youtube_id){
 			var amprsnd = youtube_id.indexOf('&');
 			if(amprsnd != -1) {
 				youtube_id = youtube_id.substring(0, amprsnd);
 			}
-			search_current = linkbar.children[i];
-			search_current.innerHTML += '<ul style="float: right; position: relative; top: -20px;" class="single-line-lego-list"><li><a id="'+youtube_id+'" class="yt-badge-std playbutton" dir="ltr">play</a></li><li><a class="yt-badge-std plusbutton" id="'+youtube_id+'" dir="ltr">+</a></li></ul>'
+			if(search_current.classList[1] == "result-item-video"){
+				search_current.innerHTML += '<ul style="float: right; position: relative; top: -20px;" class="single-line-lego-list"><li><a id="'+youtube_id+'" class="yt-badge-std playbutton" dir="ltr">play</a></li><li><a class="yt-badge-std plusbutton" id="'+youtube_id+'" dir="ltr">+</a></li></ul>'
+			}
 		}
 	}
 }
@@ -51,7 +53,7 @@ for(i=0;i<linkcount.length;i++){
 	}
 }
 var topbar = $('p.num-results')[0];
-topbar.innerHTML += '<div id="queue_all" style="height: 20px; width: 80px; float: right;"><a id="'+youtube_id+'" class="yt-badge-std playbutton" dir="ltr">queue all</a></div>';
+topbar.innerHTML += '<div id="queue_all" style="height: 20px; width: 80px; float: right;"><a id="'+youtube_id+'" class="yt-badge-std" dir="ltr">queue all</a></div>';
 
 
 //queue all button action
