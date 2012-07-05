@@ -8,7 +8,8 @@ function xbmcsend(jsonstring, callback){
 		xbmchost = getresult;
 		$.ajax({
 			data: jsonstring,
-			dataType: 'text json',
+			contentType: "application/json;charset=utf-8",
+			dataType: 'json',
 //			timeout: 500,
 			jsonp: 'jsonp_callback',
 			url: xbmchost,
