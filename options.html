@@ -1,40 +1,9 @@
 <html>
 <head><title>Playlist2XBMC options</title></head>
 <link rel="stylesheet" type="text/css" href="options.css" />
-<script type="text/javascript">
+<script type="text/javascript" src="options.js"></script>
 
-// Creates array for the optionfields
-var optionfields = {host:"host",port:"port",username:"username",password:"password"}; 
-
-// Saves options to localStorage.
-var fieldentry;
-function save_options() {
-	var tempsave;
-	var tempid_save;
-	for (fieldentry in optionfields){
-		tempid_save = optionfields[fieldentry];
-		tempsave = document.getElementById(fieldentry).value;
-		localStorage[tempid_save] = tempsave;
-	}
-	chrome.extension.getBackgroundPage().updateSetting();
-	document.getElementById('saveid').innerHTML+='saved settings';
-}
-
-function restore_options() {
-	var temprestore, templocal, tempid_restore;
-	for (fieldentry in optionfields){
-		tempid_restore = optionfields[fieldentry];
-		var templocal = localStorage[tempid_restore];
-		if (!templocal){
-			return;
-		}
-		var temprestore = document.getElementById(tempid_restore);
-		temprestore.value = templocal;
-	}
-}
-</script>
-
-<body onload="restore_options()">
+<body>
 	<div class="textbox">
 		Host: <input type="text" name="Host" value="xbmc ip / hostname" id="host"/><br>
 	</div>
@@ -48,7 +17,7 @@ function restore_options() {
 		Password(optional): <input type="text" name="password" id="password" /><br>
 	</div>
 	<br>
-	<div id="saveid"><button onclick="save_options()">Save</button></div>
+	<div id="saveid"><button>Save</button></div>
 </body>
 
 </html>
