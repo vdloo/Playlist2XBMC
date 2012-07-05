@@ -1,4 +1,3 @@
-<script>
 var host, port, username, password, connectstring;
 updateSetting();
 function updateSetting () {
@@ -19,4 +18,3 @@ chrome.extension.onRequest.addListener(
 		sendResponse({receivehost: connectstring});
 	}
 );
-</script>
