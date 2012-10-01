@@ -19,19 +19,19 @@
 		{
 		"matches": ["*://www.youtube.com/*"],
 		"js": ["jquery-1.7.2.min.js", "/contentscripts/connect.js", "/contentscripts/jsondata.js"],
-		"run_at": "document_end"
+		"run_at": "document_idle"
 		},{
 		"matches": ["*://www.youtube.com/"],
 		"js": ["/contentscripts/yt_home.js"],
-		"run_at": "document_end"
+		"run_at": "document_idle"
 		},{
 		"matches": ["*://www.youtube.com/watch?v=*"],
 		"js": ["/contentscripts/yt_player.js"],
-		"run_at": "document_end"
+		"run_at": "document_idle"
 		},{
 		"matches": ["*://www.youtube.com/results?search_query=*", "http://www.youtube.com/results?search_type=*"],
 		"js": ["/contentscripts/yt_search.js"],
-		"run_at": "document_end"
+		"run_at": "document_idle"
     		}
   	]
 }

@@ -52,7 +52,7 @@ for(i=0;i<linkcount.length;i++){
 		}
 	}
 }
-var topbar = $('p.num-results')[0];
+var topbar = $('div.filter-top')[0];
 topbar.innerHTML += '<div id="queue_all" style="height: 20px; width: 80px; float: right;"><a id="'+youtube_id+'" class="yt-badge-std" dir="ltr">queue all</a></div>';
 
 
