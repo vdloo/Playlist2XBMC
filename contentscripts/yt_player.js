@@ -47,12 +47,14 @@ function callback_ping(result){
 		}
 	}
 	else{
-	var xbmc_offline_string = '<a name="yt_offline" class="yt-uix-expander-collapsed yt-uix-button yt-uix-button-default" id="yt_offline">XBMC offline, check settings?</a>'; 
-	document.getElementById('watch-headline-user-info').innerHTML += xbmc_offline_string;
-	var yt_offline = document.getElementById('yt_offline');
-	yt_offline.addEventListener("click", function() {
-		send_clear();
-	}, false);
+		var xbmc_offline_string = '<a name="yt_offline" class="yt-uix-expander-collapsed yt-uix-button yt-uix-button-default" id="yt_offline">XBMC offline, check settings?</a>'; 
+		document.getElementById('watch-headline-user-info').innerHTML += xbmc_offline_string;
+		var yt_offline = document.getElementById('yt_offline');
+		yt_offline.addEventListener("click", function() {
+			chrome.extension.sendRequest({greeting: "linkoptions"}, function(response) {
+				console.log(response);
+			});
+		}, false);
 	}
 }
 tryjsonrpc(callback_ping);

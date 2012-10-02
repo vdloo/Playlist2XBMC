@@ -14,7 +14,12 @@ function updateSetting () {
 }
 chrome.extension.onRequest.addListener(
 	function(request, sender, sendResponse) {
-		if (request.greeting == "requesthost")
-		sendResponse({receivehost: connectstring});
+		if (request.greeting == "requesthost"){
+			sendResponse({receivehost: connectstring});
+		}
+		if (request.greeting == "linkoptions"){
+			chrome.tabs.create({url: "options.html"});
+		}
+			
 	}
 );
