@@ -15,12 +15,13 @@ function xbmcsend(jsonstring, callback){
 			url: xbmchost,
 			type: 'post',
 			success: function ( result ){
-				console.log( result );
+			//	console.log( result );
 				callback( result );
 			},
 
 			error: function ( result ){
-				console.log( result );
+			//	console.log( result );
+				callback ( "error" );
 				console.log('error!');
 			}
 		});

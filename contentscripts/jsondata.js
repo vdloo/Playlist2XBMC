@@ -95,3 +95,7 @@ function id_array(video_array){
 	send_playlist_start(video_array[0]);
 }
 
+function tryjsonrpc(ping_callback){
+	var testjson = '{"jsonrpc": "2.0", "method": "JSONRPC.ping", "id": 1}';
+	xbmcsend(testjson,function(result){console.log(result); ping_callback(result);});
+}
