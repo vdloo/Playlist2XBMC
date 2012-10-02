@@ -7,10 +7,9 @@ if (!(playlistbar.className.indexOf("passive") >= 0)) {
 	var playlist_ids = playlistbar.attributes[5].value;
 	var playlist_array = new Array();
 	playlist_array = playlist_ids.split(",");
-	yt_playlist_string = '<span style="float: right;" id="playlist-bar-title" class="yt-uix-button-group"><a style="margin-left: auto;" name="yt_playlist" class="yt-uix-tooltip yt-uix-tooltip-masked yt-uix-button yt-uix-button-default start end" id="yt_playlist">Queue playlist</a></span>'; //playlistbutton html
+	yt_playlist_string = '<a style="margin-left: auto;" name="yt_playlist" class="yt-uix-tooltip yt-uix-tooltip-masked yt-uix-button yt-uix-button-default start end" id="yt_playlist">Queue playlist</a>'; //playlistbutton html
 }
-document.getElementById('watch-headline-user-info').innerHTML += yt_play_string + yt_queue_string + yt_clear_string; // injects buttons
-document.getElementById('playlist-bar-bar').innerHTML+=yt_playlist_string;
+document.getElementById('watch-headline-user-info').innerHTML += yt_play_string + yt_queue_string + yt_clear_string + yt_playlist_string; // injects buttons
 
 //gets the youtube video id from the current URL
 var youtube_id = document.URL.split('v=')[1];
